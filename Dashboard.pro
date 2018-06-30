@@ -1,4 +1,7 @@
 QT += quick
+#QT += location
+#QT += positioning
+
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -13,7 +16,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += main.cpp \
-    mosquittoreceiver.cpp
+    mosquittoreceiver.cpp \
+    mosquittoreceiversingleton.cpp \
+    telemetry.cpp \
+    dashboard.cpp
 
 RESOURCES += qml.qrc
 
@@ -29,11 +35,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    mosquittoreceiver.h
+    mosquittoreceiver.h \
+    mosquittoreceiversingleton.h \
+    telemetry.h \
+    dashboard.h
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../usr/lib64/release/ -lmosquittopp
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../usr/lib64/debug/ -lmosquittopp
-else:unix: LIBS += -L$$PWD/../../../../usr/lib64/ -lmosquittopp
-
-INCLUDEPATH += $$PWD/../../../../usr/include
-DEPENDPATH += $$PWD/../../../../usr/include
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../usr/lib64/release/ -lmosquitto
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../usr/lib64/debug/ -lmosquitto
+else:unix: LIBS += -L$$PWD/../../../../usr/lib64/ -lmosquitto

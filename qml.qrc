@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>dashboard.qml</file>
+        <file>DashboardGaugeStyle.qml</file>
+        <file>text_dashboard.qml</file>
+        <file>text_telemetry.qml</file>
     </qresource>
 </RCC>
