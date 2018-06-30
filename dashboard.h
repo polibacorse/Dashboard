@@ -1,5 +1,4 @@
-#ifndef DASHBOARD_H
-#define DASHBOARD_H
+#pragma once
 
 #include <QObject>
 #include <QQmlApplicationEngine>
@@ -12,10 +11,10 @@ class Dashboard : public QObject
 public:
     explicit Dashboard(QObject *parent = nullptr);
 
-    Q_PROPERTY(quint32 resolutionWidth READ resolutionWidth)
+    Q_PROPERTY(quint32 resolutionWidth READ resolutionWidth CONSTANT)
     quint32 resolutionWidth() const;
 
-    Q_PROPERTY(quint32 resolutionHeight READ resolutionHeight)
+    Q_PROPERTY(quint32 resolutionHeight READ resolutionHeight CONSTANT)
     quint32 resolutionHeight() const;
 
     Q_PROPERTY(int kph READ kph WRITE setKph NOTIFY kphChanged)
@@ -84,5 +83,3 @@ private:
     QQmlApplicationEngine engine;
     MosquittoReceiver *receiver;
 };
-
-#endif // DASHBOARD_H
