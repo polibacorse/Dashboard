@@ -1,5 +1,4 @@
 #include <QGuiApplication>
-
 #include <QQmlApplicationEngine>
 
 #include "telemetry.h"
@@ -25,8 +24,6 @@ int main(int argc, char *argv[])
         qInfo("\n Usage: Dashboard --arg  \n\n arg: \n\t --telemetry \n\t --dashboard");
         exit(0);
     }
-
-
 
     return app.exec();
 }

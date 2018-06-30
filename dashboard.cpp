@@ -167,4 +167,3 @@ void Dashboard::setH2o(const int &newValue)
 int Dashboard::h2o() const {
     return m_h2o;
 }
-

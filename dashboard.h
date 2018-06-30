@@ -46,7 +46,6 @@ public:
     void setH2o(const int &);
     int h2o() const;
 
-
 signals:
     void kphChanged();
     void rpmChanged();
