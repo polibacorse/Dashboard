@@ -8,13 +8,12 @@ import QtQuick.Extras 1.4
 Window {
     id: root
     visible: true
-    width: 1024
-    height: 600
+    width: dashboardValues.resolutionWidth
+    height: dashboardValues.resolutionHeight
+    color: "black"
 
-    color: "#161616"
-
-    readonly property int my_border: root.width * 0.05
-    readonly property int small_border: root.width * 0.005
+    readonly property int caution_light_size: root.width * 0.05
+    readonly property int content_margin: root.width * 0.005
 
     property int animatedValue: 0
     SequentialAnimation on animatedValue {
@@ -23,45 +22,42 @@ Window {
         PropertyAnimation { to: 0; duration: 5000 }
     }
 
-
-    // Dashboards are typically in a landscape orientation, so we need to ensure
-    // our height is never greater than our width.
     Item {
-        id: container
+        id: main_container
         width: root.width
-        height: Math.min(root.width, root.height)
+        height: root.height
         anchors.centerIn: parent
 
         Rectangle {
-            id: main_rect
+            id: main_content
             width: parent.width
             height: parent.height
-            color: "#161616"
-            border.width: my_border
-            border.color: "lightgray"
+            color: "black"
+            // make caution light as border of main container
+            border.width: caution_light_size
+            border.color: "black"
 
             //Animation
             /*
             SequentialAnimation on border.color {
                 loops: Animation.Infinite
-                ColorAnimation  { to: "red"; duration: 50 }
-                ColorAnimation  { to: "red"; duration: 2000 }
-                ColorAnimation  { to: "lightgray"; duration: 50 }
-                ColorAnimation  { to: "lightgray"; duration: 2000 }
+                //ColorAnimation  { to: "red"; duration: 50 }
+                ColorAnimation  { to: "red"; duration: 300 }
+                //ColorAnimation  { to: main_content.color; duration: 50 }
+                ColorAnimation  { to: main_content.color; duration: 1000 }
             }
             */
 
             Row {
                 id: row1
                 spacing: 10
-                padding:my_border
+                padding: caution_light_size
                 anchors.top: parent.top
                 anchors.left: parent.left
 
                 Item {
-
-                    width: container.width - (2 * my_border)
-                    height: container.height * 0.5 - my_border
+                    width: main_container.width - (2 * caution_light_size)
+                    height: main_container.height * 0.5 - caution_light_size
 
                     Rectangle {
                         color: main_rect.color
@@ -124,7 +120,7 @@ Window {
             Row {
                 id: row2
                 spacing: 10
-                padding:my_border
+                padding: caution_light_size
                 anchors.bottom: parent.bottom
                 anchors.right: parent.right
 
@@ -134,7 +130,7 @@ Window {
                     height: container.height * 0.5 - my_border
 
                     Rectangle {
-                        color: main_rect.color
+                        color: main_content.color
                         width: parent.width / 3
                         height: parent.height
                         x: 0
@@ -218,6 +214,7 @@ Window {
                                 font.pointSize: 32
                                 text: "Oil"
                             }
+
                             Text {
                                 height: parent.height
                                 width: parent.width / 3
@@ -226,6 +223,7 @@ Window {
                                 font.pointSize: 32
                                 text: dashboardValues.oil_press
                             }
+
                             Text {
                                 height: parent.height
                                 width: parent.width / 2

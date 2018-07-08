@@ -1,5 +1,7 @@
 QT += quick
 CONFIG += c++17
+#QT += location
+#QT += positioning
 
 QMAKE_CXXFLAGS += -std=c++17
 
@@ -10,6 +12,7 @@ SOURCES += \
     main.cpp \
     mosquittoreceiver.cpp \
     mosquittoreceiversingleton.cpp \
+    telemetry.cpp \
     dashboard.cpp
 
 #RESOURCES += qml.qrc
@@ -28,6 +31,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     mosquittoreceiver.h \
     mosquittoreceiversingleton.h \
+    telemetry.h \
     dashboard.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../usr/lib64/release/ -lmosquitto

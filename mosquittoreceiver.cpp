@@ -137,7 +137,12 @@ void MosquittoReceiver::run()
         while (!subscribeQueue_.isEmpty()) {
             const auto &topic = subscribeQueue_.dequeue();
 
-            mosquitto_subscribe(mosq, nullptr, topic.toStdString().c_str(), 0); // QoS 0: just stream it
+            rc = mosquitto_subscribe(mosq, nullptr, topic.toStdString().c_str(), 0); // QoS 0: just stream it
+
+            if (rc != MOSQ_ERR_SUCCESS) {
+                //qCritical("MosquittoReceiver: cannot subscribe to topic");
+
+            }
         }
 
         mutex_.unlock();
@@ -181,6 +186,9 @@ void MosquittoReceiver::_onMessage(const mosquitto_message *message)
     QByteArray payload{reinterpret_cast<const char *>(message->payload), message->payloadlen};
 
     try {
+        /*qInfo() << "Message arrived from " << topic;
+        QString message{payload};
+        qInfo() << "Message arrived " << message;*/
         auto jdoc = QJsonDocument::fromJson(payload);
         auto jpayload = jdoc.object();
 
