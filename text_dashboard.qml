@@ -8,12 +8,13 @@ import QtQuick.Extras 1.4
 Window {
     id: root
     visible: true
-    width: dashboardValues.resolutionWidth
-    height: dashboardValues.resolutionHeight
-    color: "black"
+    width: 1024
+    height: 600
 
-    readonly property int caution_light_size: root.width * 0.05
-    readonly property int content_margin: root.width * 0.005
+    color: "#161616"
+
+    readonly property int my_border: root.width * 0.05
+    readonly property int small_border: root.width * 0.005
 
     property int animatedValue: 0
     SequentialAnimation on animatedValue {
@@ -22,46 +23,47 @@ Window {
         PropertyAnimation { to: 0; duration: 5000 }
     }
 
+
+    // Dashboards are typically in a landscape orientation, so we need to ensure
+    // our height is never greater than our width.
     Item {
-        id: main_container
+        id: container
         width: root.width
-        height: root.height
+        height: Math.min(root.width, root.height)
         anchors.centerIn: parent
 
         Rectangle {
-            id: main_content
+            id: main_rect
             width: parent.width
             height: parent.height
-            color: "black"
-            // make caution light as border of main container
-            border.width: caution_light_size
-            border.color: "black"
+            color: "#161616"
+            border.width: my_border
+            border.color: "lightgray"
 
             //Animation
-            /*
-            SequentialAnimation on border.color {
+            /*SequentialAnimation on border.color {
                 loops: Animation.Infinite
-                //ColorAnimation  { to: "red"; duration: 50 }
-                ColorAnimation  { to: "red"; duration: 300 }
-                //ColorAnimation  { to: main_content.color; duration: 50 }
-                ColorAnimation  { to: main_content.color; duration: 1000 }
-            }
-            */
+                ColorAnimation  { to: "red"; duration: 50 }
+                ColorAnimation  { to: "red"; duration: 2000 }
+                ColorAnimation  { to: "lightgray"; duration: 50 }
+                ColorAnimation  { to: "lightgray"; duration: 2000 }
+            }*/
 
             Row {
                 id: row1
                 spacing: 10
-                padding: caution_light_size
+                padding:my_border
                 anchors.top: parent.top
                 anchors.left: parent.left
 
                 Item {
-                    width: main_container.width - (2 * caution_light_size)
-                    height: main_container.height * 0.5 - caution_light_size
+
+                    width: container.width - (2 * my_border)
+                    height: container.height * 0.5 - my_border
 
                     Rectangle {
                         color: main_rect.color
-                        width: parent.width / 2 * 3
+                        width: parent.width / 4 * 3
                         height: parent.height
 
                         Text {
@@ -83,7 +85,7 @@ Window {
                             y: parent.height / 3
                             color:"white"
                             font.pointSize: 26
-                            text: "RPM"
+                            text: "Rpm"
                         }
 
                     }
@@ -92,7 +94,7 @@ Window {
                         color: main_rect.color
                         width: parent.width / 4
                         height: parent.height
-                        x: parent.width / 4 * 3
+                        x: parent.width / 4*3
 
                         Text {
                             id: gear
@@ -120,17 +122,17 @@ Window {
             Row {
                 id: row2
                 spacing: 10
-                padding: caution_light_size
+                padding:my_border
                 anchors.bottom: parent.bottom
                 anchors.right: parent.right
 
                 Item {
                     id: row2_item
-                    width: (container.width - 2 * my_border) // / 3 * 2 // 2/3 della larghezza
+                    width: (container.width - 2*my_border) // / 3 * 2 // 2/3 della larghezza
                     height: container.height * 0.5 - my_border
 
                     Rectangle {
-                        color: main_content.color
+                        color: main_rect.color
                         width: parent.width / 3
                         height: parent.height
                         x: 0
@@ -138,7 +140,7 @@ Window {
                         Text {
                             id: kph
                             height: parent.height
-                            width: parent.width / 5 * 4
+                            width: parent.width / 5*4
                             color:"white"
                             x: parent.width / 10
                             y: parent.height / 5
@@ -148,11 +150,11 @@ Window {
                         Text {
                             height: parent.height
                             width: parent.width / 5
-                            x: kph.width / 5 * 4.5
+                            x: kph.width / 5*4.5
                             y: parent.height / 2.5
-                            color: "white"
+                            color:"white"
                             font.pointSize: 26
-                            text: "km/h"
+                            text: "Km/h"
                         }
                     }
 
@@ -166,33 +168,33 @@ Window {
 
                         Rectangle {
                             id: fuel
-                            color: "lightgray"
-                            width: parent.width - 2 * small_border
+                            color: "green"
+                            width: parent.width - 2*small_border
                             height: parent.height / 2 - small_border
                             x:small_border
                             y:small_border
 
                             Text {
                                 height: parent.height
-                                width: parent.width / 3
+                                width: parent.width/3
                                 x: 10
-                                y: parent.height / 3
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: "Fuel"
                             }
                             Text {
                                 height: parent.height
-                                width: parent.width / 3
-                                x: parent.width / 3 + 30
-                                y: parent.height / 3
+                                width: parent.width/3
+                                x: parent.width/3 + 30
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: dashboardValues.fuel
                             }
                             Text {
                                 height: parent.height
-                                width: parent.width / 3
-                                x: parent.width / 3 * 2
-                                y: parent.height / 3
+                                width: parent.width/3
+                                x: parent.width/3*2
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: "Bar"
                             }
@@ -200,35 +202,33 @@ Window {
 
                         Rectangle {
                             id: oil
-                            color: "lightgray"
-                            width: parent.width - 2 * small_border
+                            color: "green"
+                            width: parent.width - 2*small_border
                             height: parent.height / 2 - small_border
                             anchors.top: fuel.bottom
-                            x: small_border
+                            x:small_border
 
                             Text {
                                 height: parent.height
-                                width: parent.width / 3
+                                width: parent.width/3
                                 x: 10
-                                y: parent.height / 3
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: "Oil"
                             }
-
                             Text {
                                 height: parent.height
-                                width: parent.width / 3
-                                x: parent.width / 3 + 30
-                                y: parent.height / 3
+                                width: parent.width/3
+                                x: parent.width/3 + 30
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: dashboardValues.oil_press
                             }
-
                             Text {
                                 height: parent.height
-                                width: parent.width / 2
-                                x: parent.width / 3 * 2
-                                y: parent.height / 3
+                                width: parent.width/2
+                                x: parent.width/3*2
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: "Bar"
                             }
@@ -245,33 +245,33 @@ Window {
 
                         Rectangle {
                             id: h2o
-                            color: "lightgray"
-                            width: parent.width - 2 * small_border
+                            color: "green"
+                            width: parent.width - 2*small_border
                             height: parent.height / 2 - small_border
-                            x: small_border
-                            y: small_border
+                            x:small_border
+                            y:small_border
 
                             Text {
                                 height: parent.height
-                                width: parent.width / 3
+                                width: parent.width/3
                                 x: 10
-                                y: parent.height / 3
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: "H2O"
                             }
                             Text {
                                 height: parent.height
-                                width: parent.width / 3
-                                x: parent.width / 3 + 30
-                                y: parent.height / 3
+                                width: parent.width/3
+                                x: parent.width/3 + 30
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: dashboardValues.h2o
                             }
                             Text {
                                 height: parent.height
-                                width: parent.width / 2
-                                x: parent.width / 3 * 2
-                                y: parent.height / 3
+                                width: parent.width/2
+                                x: parent.width/3*2
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: "°C"
                             }
@@ -279,33 +279,33 @@ Window {
 
                         Rectangle {
                             id: oil_temp
-                            color: "lightgray"
-                            width: parent.width - 2 * small_border
+                            color: "green"
+                            width: parent.width - 2*small_border
                             height: parent.height / 2 - small_border
                             anchors.top: h2o.bottom
-                            x: small_border
+                            x:small_border
 
                             Text {
                                 height: parent.height
-                                width: parent.width / 3
+                                width: parent.width/3
                                 x: 10
-                                y: parent.height / 3
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: "Oil"
                             }
                             Text {
                                 height: parent.height
-                                width: parent.width / 3
-                                x: parent.width / 3 + 30
-                                y: parent.height / 3
+                                width: parent.width/3
+                                x: parent.width/3 + 30
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: dashboardValues.oil_temp
                             }
                             Text {
                                 height: parent.height
-                                width: parent.width / 2
-                                x: parent.width / 3 * 2
-                                y: parent.height / 3
+                                width: parent.width/2
+                                x: parent.width/3*2
+                                y: parent.height/3
                                 font.pointSize: 32
                                 text: "°C"
                             }
