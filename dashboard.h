@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DASHBOARD_H
+#define DASHBOARD_H
 
 #include <QObject>
 #include <QQmlApplicationEngine>
@@ -10,12 +11,6 @@ class Dashboard : public QObject
     Q_OBJECT
 public:
     explicit Dashboard(QObject *parent = nullptr);
-
-    Q_PROPERTY(quint32 resolutionWidth READ resolutionWidth CONSTANT)
-    quint32 resolutionWidth() const;
-
-    Q_PROPERTY(quint32 resolutionHeight READ resolutionHeight CONSTANT)
-    quint32 resolutionHeight() const;
 
     Q_PROPERTY(int kph READ kph WRITE setKph NOTIFY kphChanged)
     void setKph(const int &);
@@ -45,6 +40,8 @@ public:
     void setH2o(const int &);
     int h2o() const;
 
+
+
 signals:
     void kphChanged();
     void rpmChanged();
@@ -70,16 +67,16 @@ private:
 
     bool debug_mode = false; // set here default debug mode
 
-    const quint32 mResolutionWidth = 1024;
-    const quint32 mResolutionHeight = 600;
-    int m_kph = 0;
-    int m_rpm = 0;
-    int m_gear = 0;
-    int m_fuel = 0;
-    int m_oil_temp = 0;
-    int m_oil_press = 0;
-    int m_h2o = 0;
+    int m_kph = 100;
+    int m_rpm = 8000;
+    int m_gear = 5;
+    int m_fuel = 2.5;
+    int m_oil_temp = 90;
+    int m_oil_press = 3.5;
+    int m_h2o = 85;
 
     QQmlApplicationEngine engine;
     MosquittoReceiver *receiver;
 };
+
+#endif // DASHBOARD_H

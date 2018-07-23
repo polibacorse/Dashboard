@@ -295,7 +295,7 @@ public slots:
 
 private:
 
-    QString topics[57] = {"data/formatted/a1x",
+    QString topics[58] = {"data/formatted/a1x",
                         "data/formatted/a1y",
                         "data/formatted/steer_pos",
                         "data/formatted/fldamp",

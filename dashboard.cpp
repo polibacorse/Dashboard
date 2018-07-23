@@ -76,13 +76,6 @@ void Dashboard::update(QString topic, QJsonObject data)
     }
 }
 
-quint32 Dashboard::resolutionWidth() const {
-    return mResolutionWidth;
-}
-
-quint32 Dashboard::resolutionHeight() const {
-    return mResolutionHeight;
-}
 
 void Dashboard::setKph(const int &newValue)
 {
@@ -167,3 +160,4 @@ void Dashboard::setH2o(const int &newValue)
 int Dashboard::h2o() const {
     return m_h2o;
 }
+

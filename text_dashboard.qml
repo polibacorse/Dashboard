@@ -38,7 +38,7 @@ Window {
             height: parent.height
             color: "#161616"
             border.width: my_border
-            border.color: "lightgray"
+            border.color: "red"
 
             //Animation
             /*SequentialAnimation on border.color {
@@ -168,16 +168,19 @@ Window {
 
                         Rectangle {
                             id: fuel
-                            color: "green"
+                            color: "#161616"
                             width: parent.width - 2*small_border
                             height: parent.height / 2 - small_border
                             x:small_border
                             y:small_border
+                            border.width: 25
+                            border.color: "green"
 
                             Text {
                                 height: parent.height
                                 width: parent.width/3
-                                x: 10
+                                color:"white"
+                                x: 30
                                 y: parent.height/3
                                 font.pointSize: 32
                                 text: "Fuel"
@@ -185,6 +188,7 @@ Window {
                             Text {
                                 height: parent.height
                                 width: parent.width/3
+                                color:"white"
                                 x: parent.width/3 + 30
                                 y: parent.height/3
                                 font.pointSize: 32
@@ -193,6 +197,7 @@ Window {
                             Text {
                                 height: parent.height
                                 width: parent.width/3
+                                color:"white"
                                 x: parent.width/3*2
                                 y: parent.height/3
                                 font.pointSize: 32
@@ -202,21 +207,25 @@ Window {
 
                         Rectangle {
                             id: oil
-                            color: "green"
+                            color: "#161616"
                             width: parent.width - 2*small_border
                             height: parent.height / 2 - small_border
                             anchors.top: fuel.bottom
                             x:small_border
+                            border.width: 25
+                            border.color: "green"
 
                             Text {
+                                color:"white"
                                 height: parent.height
                                 width: parent.width/3
-                                x: 10
+                                x: 30
                                 y: parent.height/3
                                 font.pointSize: 32
                                 text: "Oil"
                             }
                             Text {
+                                color:"white"
                                 height: parent.height
                                 width: parent.width/3
                                 x: parent.width/3 + 30
@@ -225,6 +234,7 @@ Window {
                                 text: dashboardValues.oil_press
                             }
                             Text {
+                                color:"white"
                                 height: parent.height
                                 width: parent.width/2
                                 x: parent.width/3*2
@@ -245,21 +255,25 @@ Window {
 
                         Rectangle {
                             id: h2o
-                            color: "green"
+                            color: "#161616"
                             width: parent.width - 2*small_border
                             height: parent.height / 2 - small_border
                             x:small_border
                             y:small_border
+                            border.width: 25
+                            border.color: "green"
 
                             Text {
+                                color:"white"
                                 height: parent.height
                                 width: parent.width/3
-                                x: 10
+                                x: 30
                                 y: parent.height/3
                                 font.pointSize: 32
                                 text: "H2O"
                             }
                             Text {
+                                color:"white"
                                 height: parent.height
                                 width: parent.width/3
                                 x: parent.width/3 + 30
@@ -268,6 +282,7 @@ Window {
                                 text: dashboardValues.h2o
                             }
                             Text {
+                                color:"white"
                                 height: parent.height
                                 width: parent.width/2
                                 x: parent.width/3*2
@@ -279,21 +294,25 @@ Window {
 
                         Rectangle {
                             id: oil_temp
-                            color: "green"
+                            color: "#161616"
                             width: parent.width - 2*small_border
                             height: parent.height / 2 - small_border
                             anchors.top: h2o.bottom
                             x:small_border
+                            border.width: 25
+                            border.color: "green"
 
                             Text {
+                                color:"white"
                                 height: parent.height
                                 width: parent.width/3
-                                x: 10
+                                x: 30
                                 y: parent.height/3
                                 font.pointSize: 32
                                 text: "Oil"
                             }
                             Text {
+                                color:"white"
                                 height: parent.height
                                 width: parent.width/3
                                 x: parent.width/3 + 30
@@ -302,6 +321,7 @@ Window {
                                 text: dashboardValues.oil_temp
                             }
                             Text {
+                                color:"white"
                                 height: parent.height
                                 width: parent.width/2
                                 x: parent.width/3*2
