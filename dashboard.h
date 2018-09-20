@@ -40,6 +40,26 @@ public:
     void setH2o(const int &);
     int h2o() const;
 
+    Q_PROPERTY(QString borderAcc READ borderAcc WRITE setBorderAcc NOTIFY borderAccChanged)
+    void setBorderAcc(const QString &);
+    QString borderAcc() const;
+
+    Q_PROPERTY(QString borderFuelPress READ borderFuelPress WRITE setBorderFuelPress NOTIFY borderFuelPressChanged)
+    void setBorderFuelPress(const QString &);
+    QString borderFuelPress() const;
+
+    Q_PROPERTY(QString borderOilPress READ borderOilPress WRITE setBorderOilPress NOTIFY borderOilPressChanged)
+    void setBorderOilPress(const QString &);
+    QString borderOilPress() const;
+
+    Q_PROPERTY(QString borderH2oTemp READ borderH2oTemp WRITE setBorderH2oTemp NOTIFY borderH2oTempChanged)
+    void setBorderH2oTemp(const QString &);
+    QString borderH2oTemp() const;
+
+    Q_PROPERTY(QString borderOilTemp READ borderOilTemp WRITE setBorderOilTemp NOTIFY borderOilTempChanged)
+    void setBorderOilTemp(const QString &);
+    QString borderOilTemp() const;
+
 
 
 signals:
@@ -50,6 +70,12 @@ signals:
     void oil_tempChanged();
     void oil_pressChanged();
     void h2oChanged();
+
+    void borderAccChanged();
+    void borderFuelPressChanged();
+    void borderOilPressChanged();
+    void borderH2oTempChanged();
+    void borderOilTempChanged();
 
 public slots:
     void update(QString topic, QJsonObject data);
@@ -67,13 +93,28 @@ private:
 
     bool debug_mode = false; // set here default debug mode
 
-    int m_kph = 100;
-    int m_rpm = 8000;
-    int m_gear = 5;
-    int m_fuel = 2.5;
-    int m_oil_temp = 90;
-    int m_oil_press = 3.5;
-    int m_h2o = 85;
+    int m_kph = 0;
+    int m_rpm = 0;
+    int m_gear = 0;
+    int m_fuel = 0;
+    int m_oil_temp = 0;
+    int m_oil_press = 0;
+    int m_h2o = 0;
+
+    QString m_borderAcc = "#161616";
+    QString m_borderFuelPress = "#161616";
+    QString m_borderOilPress = "#161616";
+    QString m_borderH2oTemp = "#161616";
+    QString m_borderOilTemp = "#161616";
+
+    int t_less_h2o = 90;
+    int t_sup_h2o = 110;
+    int t_less_oilTemp = 90;
+    int t_sup_oilTemp = 110;
+    int t_less_oilPress = 2;
+    int t_sup_oilPress = 4;
+    int t_less_fuel = 2;
+    int t_sup_fuel = 4;
 
     QQmlApplicationEngine engine;
     MosquittoReceiver *receiver;

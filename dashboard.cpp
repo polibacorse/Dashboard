@@ -118,6 +118,14 @@ void Dashboard::setFuel(const int &newValue)
     if (newValue != m_fuel) {
         m_fuel = newValue;
         emit fuelChanged();
+
+        if(m_fuel < t_less_fuel){
+            setBorderFuelPress("red");
+        }else if(m_fuel <= t_sup_fuel && m_fuel > t_less_fuel){
+            setBorderFuelPress("green");
+        }else if(m_fuel >= t_sup_fuel){
+            setBorderFuelPress("red");
+        }
     }
 }
 
@@ -130,6 +138,14 @@ void Dashboard::setOil_press(const int &newValue)
     if (newValue != m_oil_press) {
         m_oil_press = newValue;
         emit oil_pressChanged();
+
+        if(m_oil_press < t_less_oilPress){
+            setBorderOilPress("blue");
+        }else if(m_oil_press <= t_sup_oilPress && m_oil_press > t_less_oilPress){
+            setBorderOilPress("green");
+        }else if(m_oil_press >= t_sup_oilPress){
+            setBorderOilPress("red");
+        }
     }
 }
 
@@ -142,6 +158,14 @@ void Dashboard::setOil_temp(const int &newValue)
     if (newValue != m_oil_temp) {
         m_oil_temp = newValue;
         emit oil_tempChanged();
+
+        if(m_oil_temp < t_less_oilTemp){
+            setBorderOilTemp("blue");
+        }else if(m_oil_temp <= t_sup_oilTemp && m_oil_temp > t_less_oilTemp){
+            setBorderOilTemp("green");
+        }else if(m_oil_temp >= t_sup_oilTemp){
+            setBorderOilTemp("red");
+        }
     }
 }
 
@@ -154,10 +178,68 @@ void Dashboard::setH2o(const int &newValue)
     if (newValue != m_h2o) {
         m_h2o = newValue;
         emit h2oChanged();
+
+        if(m_h2o < t_less_h2o){
+            setBorderH2oTemp("blue");
+        }else if(m_h2o <= t_sup_h2o && m_h2o > t_less_h2o){
+            setBorderH2oTemp("green");
+        }else if(m_h2o >= t_sup_h2o){
+            setBorderH2oTemp("red");
+        }
     }
 }
 
 int Dashboard::h2o() const {
     return m_h2o;
+}
+
+void Dashboard::setBorderAcc(const QString &newValue)
+{
+        m_borderAcc = newValue;
+        emit borderAccChanged();
+}
+
+QString Dashboard::borderAcc() const {
+    return m_borderAcc;
+}
+
+void Dashboard::setBorderFuelPress(const QString &newValue)
+{
+        m_borderFuelPress = newValue;
+        emit borderFuelPressChanged();
+}
+
+QString Dashboard::borderFuelPress() const {
+    return m_borderFuelPress;
+}
+
+void Dashboard::setBorderOilPress(const QString &newValue)
+{
+        m_borderOilPress = newValue;
+        emit borderOilPressChanged();
+}
+
+QString Dashboard::borderOilPress() const {
+    return m_borderOilPress;
+}
+
+void Dashboard::setBorderH2oTemp(const QString &newValue)
+{
+        m_borderH2oTemp = newValue;
+        emit borderH2oTempChanged();
+}
+
+QString Dashboard::borderH2oTemp() const {
+    return m_borderH2oTemp;
+}
+
+void Dashboard::setBorderOilTemp(const QString &newValue)
+{
+        m_borderOilTemp = newValue;
+        emit borderOilTempChanged();
+}
+
+QString Dashboard::borderOilTemp() const {
+    return m_borderOilTemp;
 }
 

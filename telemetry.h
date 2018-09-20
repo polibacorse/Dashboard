@@ -355,34 +355,34 @@ private:
 
     bool debug_mode = false; // set here default debug mode
 
-    int m_kph = 100;
-    int m_rpm = 8000;
-    int m_gear = 5;
-    int m_fuel = 20;
-    int m_oil_temp = 90;
-    int m_oil_press = 50;
-    int m_h2o = 80;
+    int m_kph = 0;
+    int m_rpm = 0;
+    int m_gear = 0;
+    int m_fuel = 0;
+    int m_oil_temp = 0;
+    int m_oil_press = 0;
+    int m_h2o = 0;
 
     int min_kph = 0;
-    int min_rpm = 500;
+    int min_rpm = 0;
     int min_fuel = 0;
     int min_oil_temp = 0;
     int min_oil_press = 0;
     int min_h2o = 0;
 
-    int max_kph = 150;
-    int max_rpm = 10000;
-    int max_fuel = 100;
-    int max_oil_temp = 100;
-    int max_oil_press = 100;
-    int max_h2o = 100;
+    int max_kph = 0;
+    int max_rpm = 0;
+    int max_fuel = 0;
+    int max_oil_temp = 0;
+    int max_oil_press = 0;
+    int max_h2o = 0;
 
-    float p_kph = 0.5;
-    float p_rpm = 0.3;
-    float p_fuel = 0.4;
-    float p_oil_temp = 0.7;
-    float p_oil_press = 0.7;
-    float p_h2o = 0.8;
+    float p_kph = 0;
+    float p_rpm = 0;
+    float p_fuel = 0;
+    float p_oil_temp = 0;
+    float p_oil_press = 0;
+    float p_h2o = 0;
 
     int m_a1x = 0;
     int m_a1y = 0;

@@ -6,6 +6,7 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Extras 1.4
 
 Window {
+
     id: root
     visible: true
     width: 1024
@@ -16,12 +17,12 @@ Window {
     readonly property int my_border: root.width * 0.05
     readonly property int small_border: root.width * 0.005
 
-    property int animatedValue: 0
+    /*property int animatedValue: 0
     SequentialAnimation on animatedValue {
         loops: Animation.Infinite
         PropertyAnimation { to: 100; duration: 5000 }
         PropertyAnimation { to: 0; duration: 5000 }
-    }
+    }*/
 
 
     // Dashboards are typically in a landscape orientation, so we need to ensure
@@ -38,15 +39,15 @@ Window {
             height: parent.height
             color: "#161616"
             border.width: my_border
-            border.color: "red"
+            border.color: dashboardValues.borderAcc
 
             //Animation
             /*SequentialAnimation on border.color {
                 loops: Animation.Infinite
                 ColorAnimation  { to: "red"; duration: 50 }
-                ColorAnimation  { to: "red"; duration: 2000 }
-                ColorAnimation  { to: "lightgray"; duration: 50 }
-                ColorAnimation  { to: "lightgray"; duration: 2000 }
+                ColorAnimation  { to: "red"; duration: 5000 }
+                ColorAnimation  { to: "#161616"; duration: 50 }
+                ColorAnimation  { to: "#161616"; duration: 5000 }
             }*/
 
             Row {
@@ -67,6 +68,14 @@ Window {
                         height: parent.height
 
                         Text {
+                            /*property int animatedValue: 30
+                            SequentialAnimation on animatedValue {
+                                loops: Animation.Infinite
+                                PropertyAnimation { to: 120; duration: 3000 }
+                                PropertyAnimation { to: 120; duration: 2000 }
+                                PropertyAnimation { to: 70; duration: 1000 }
+                                PropertyAnimation { to: 90; duration: 2000 }
+                            }*/
                             id: rpm
                             height: parent.height
                             width: parent.width / 2
@@ -81,11 +90,12 @@ Window {
                             id: rpm_label
                             height: parent.height
                             width: parent.width / 2
-                            x: rpm.width * 1.5
+                            x: rpm.width * 1.2
+
                             y: parent.height / 3
                             color:"white"
                             font.pointSize: 26
-                            text: "Rpm"
+                            text: "x100 Rpm"
                         }
 
                     }
@@ -174,8 +184,7 @@ Window {
                             x:small_border
                             y:small_border
                             border.width: 25
-                            border.color: "green"
-
+                            border.color: dashboardValues.borderFuelPress
                             Text {
                                 height: parent.height
                                 width: parent.width/3
@@ -213,7 +222,7 @@ Window {
                             anchors.top: fuel.bottom
                             x:small_border
                             border.width: 25
-                            border.color: "green"
+                            border.color: dashboardValues.borderOilPress
 
                             Text {
                                 color:"white"
@@ -254,6 +263,21 @@ Window {
                         anchors.right: parent.right
 
                         Rectangle {
+
+                            /*SequentialAnimation on border.color {
+                                loops: Animation.Infinite
+                                ColorAnimation  { to: "blue"; duration: 0 }
+                                ColorAnimation  { to: "blue"; duration: 9000 }
+                                ColorAnimation  { to: "green"; duration: 0 }
+                                ColorAnimation  { to: "green"; duration: 3000 }
+                                ColorAnimation  { to: "red"; duration: 0 }
+                                ColorAnimation  { to: "red"; duration: 6000 }
+                                ColorAnimation  { to: "green"; duration: 0 }
+                                ColorAnimation  { to: "green"; duration: 3000 }
+                                ColorAnimation  { to: "blue"; duration: 0 }
+                                ColorAnimation  { to: "blue"; duration: 9000 }
+                            }*/
+
                             id: h2o
                             color: "#161616"
                             width: parent.width - 2*small_border
@@ -261,7 +285,7 @@ Window {
                             x:small_border
                             y:small_border
                             border.width: 25
-                            border.color: "green"
+                            border.color: dashboardValues.borderH2oTemp
 
                             Text {
                                 color:"white"
@@ -273,6 +297,12 @@ Window {
                                 text: "H2O"
                             }
                             Text {
+                                /*property int animatedValue: 30
+                                SequentialAnimation on animatedValue {
+                                    loops: Animation.Infinite
+                                    PropertyAnimation { to: 130; duration: 15000 }
+                                    PropertyAnimation { to: 30; duration: 15000 }
+                                }*/
                                 color:"white"
                                 height: parent.height
                                 width: parent.width/3
@@ -300,7 +330,7 @@ Window {
                             anchors.top: h2o.bottom
                             x:small_border
                             border.width: 25
-                            border.color: "green"
+                            border.color: dashboardValues.borderOilTemp
 
                             Text {
                                 color:"white"
