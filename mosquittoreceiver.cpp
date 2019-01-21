@@ -173,7 +173,7 @@ void MosquittoReceiver::_onDisconnect(int rc)
 
 void MosquittoReceiver::subscribe(QString topic)
 {
-    qInfo() << "Subscribing to " << topic;
+    //qInfo() << "Subscribing to " << topic;
 
     mutex_.lock();
     subscribeQueue_.enqueue(topic);
@@ -186,13 +186,13 @@ void MosquittoReceiver::_onMessage(const mosquitto_message *message)
     QByteArray payload{reinterpret_cast<const char *>(message->payload), message->payloadlen};
 
     try {
-        qInfo() << "Message arrived from " << topic;
+        //qInfo() << "Message arrived from " << topic;
         QString message{payload};
-        qInfo() << "Message arrived " << message;
+        //qInfo() << "Message arrived " << message;
         auto jdoc = QJsonDocument::fromJson(payload);
         auto jpayload = jdoc.object();
 
-        // qInfo() << "Message arrived from " << topic;
+        // //qInfo() << "Message arrived from " << topic;
 
         emit _message(topic, jpayload);
     } catch (...) {

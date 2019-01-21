@@ -1,8 +1,9 @@
 QT += quick
-QT += location
-QT += positioning
 
-CONFIG += c++11
+#CONFIG += c++11
+CONFIG += qtquickcompiler
+
+QMAKE_CXXFLAGS += -march=armv7-a  -mthumb -mthumb-interwork
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings

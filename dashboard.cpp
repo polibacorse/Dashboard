@@ -3,8 +3,8 @@
 #include <QDebug>
 
 Dashboard::Dashboard(QObject *parent) : QObject(parent)
-{    
-    qInfo("Initialising Mosquitto receiver.");
+{
+    //qInfo("Initialising Mosquitto receiver.");
     this->receiver = new MosquittoReceiver(this);
     receiver->connect();
     connect(receiver, SIGNAL(message(QString, QJsonObject)), this, SLOT(update(QString,QJsonObject)));
@@ -19,7 +19,7 @@ Dashboard::Dashboard(QObject *parent) : QObject(parent)
     receiver->subscribe(oil_temp_topic);
     receiver->subscribe(h2o_topic);
 
-    qInfo("Initialising GUI Engine.");
+    //qInfo("Initialising GUI Engine.");
     engine.rootContext()->setContextProperty("dashboardValues", this);
     engine.load(QUrl(QStringLiteral("qrc:/text_dashboard.qml")));
     if (engine.rootObjects().isEmpty())
@@ -48,31 +48,31 @@ void Dashboard::update(QString topic, QJsonObject data)
 
     if(QString::compare(topic, kph_topic, Qt::CaseSensitive) == 0){
         setKph(data["value"].toInt());
-        qInfo() << data["value"];
+        //qInfo() << data["value"];
 
     }else if(QString::compare(topic, rpm_topic, Qt::CaseSensitive) == 0){
         setRpm(data["value"].toInt());
-        qInfo() << data["value"];
+        ////qInfo() << data["value"];
 
     }else if(QString::compare(topic, gear_topic, Qt::CaseSensitive) == 0){
         setGear(data["value"].toInt());
-        qInfo() << data["value"];
+        ////qInfo() << data["value"];
 
     }else if(QString::compare(topic, fuel_topic, Qt::CaseSensitive) == 0){
         setFuel(data["value"].toInt());
-        qInfo() << data["value"];
+        ////qInfo() << data["value"];
 
     }else if(QString::compare(topic, oil_temp_topic, Qt::CaseSensitive) == 0){
         setOil_temp(data["value"].toInt());
-        qInfo() << data["value"];
+        ////qInfo() << data["value"];
 
     }else if(QString::compare(topic, oil_press_topic, Qt::CaseSensitive) == 0){
         setOil_press(data["value"].toInt());
-        qInfo() << data["value"];
+        ////qInfo() << data["value"];
 
     }else if(QString::compare(topic, h2o_topic, Qt::CaseSensitive) == 0){
         setH2o(data["value"].toInt());
-        qInfo() << data["value"];
+        ////qInfo() << data["value"];
     }
 }
 
